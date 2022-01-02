@@ -1,29 +1,28 @@
-import { result } from 'lodash'
 import React from 'react'
 import SearchSummaryVideo from './SearchSummaryVideo'
 
 export default function SearchResultsPage(props) {
 
-    const limited_list = props.data.splice(0, 16)
-    
-    // let itemList = limited_list.map((item, index) => {
-    //     return <SearchSummaryVideo title={item}>{index}</SearchSummaryVideo>
-    // })
+    var videos = props.videos
 
+    if (videos == undefined) {
+        return <div></div>
+    }
 
-    // console.log("...")
-    // console.log(props)
-    // console.log(limited_list)
+    if (videos.length > 16) {
+        videos = videos.splice(0, 16)
+    }
 
-    const listItems = limited_list.map((d) => <SearchSummaryVideo 
+    var videosList = videos.map((d) => <SearchSummaryVideo 
         title={d.title}
         uploader={d.from_channel}
         thumbnail={d.www_thumbnail}
         date={d.date}
         view_count={d.view_count}
+        video_id={d.videoId}
         ></SearchSummaryVideo>);
 
     return (
-        <div class="flex flex-wrap flex-row pt-6 pl-3">{listItems}</div>
+        <div class="flex justify-center flex-wrap flex-row pt-6 pl-3">{videosList}</div>
     );
 }
