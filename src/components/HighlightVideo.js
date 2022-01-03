@@ -7,11 +7,7 @@ export default function HighlightVideo() {
     const [videoUrl, setVideoUrl] = useState("");
 
     const fetchData = async () => {
-        
         const id = window.location.pathname.substring(8)
-
-        console.log(window.location.pathname)
-
         const res = await fetch("http://127.0.0.1:5000/" + id);
         const data = await res.json();
         setData(data);
@@ -31,7 +27,7 @@ export default function HighlightVideo() {
                     playing
                     url={videoUrl}
                     width='100%'
-                    height='574px' />
+                    height='700px' />
             </div>
 
             <div className="mx-4 my-4">

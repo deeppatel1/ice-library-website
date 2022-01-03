@@ -9,23 +9,23 @@ export default class SearchPage extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            query: "example_query",
-            video_results: []
+            query: props.query || "",
+            videoResults: []
         }
-        this.update_query = this.update_query.bind(this)
+        this.updateQuery = this.updateQuery.bind(this)
     }
 
 
-    update_query(query) {
+    updateQuery(query) {
         this.setState({query: query})
-        this.load_video_results(query)
+        this.loadVideoResults(query)
     }
 
 
-    load_video_results(query) {
+    loadVideoResults(query) {
         Axios.get("http://127.0.0.1:5000/search?q=" + query).then((response) => {
-            console.log(response)
-            this.setState({ video_results: response.data.videos })
+            // console.log(response)
+            this.setState({ videoResults: response.data.videos })
         })
     }
 
@@ -33,8 +33,8 @@ export default class SearchPage extends Component {
     render() {
         return (
             <div>
-                <SearchBar update_query_func={this.update_query}></SearchBar>
-                <SearchResultsPage videos={this.state.video_results}></SearchResultsPage>
+                <SearchBar updateQueryFunc={this.updateQuery}></SearchBar>
+                <SearchResultsPage videos={this.state.videoResults}></SearchResultsPage>
             </div>
         )
     }
