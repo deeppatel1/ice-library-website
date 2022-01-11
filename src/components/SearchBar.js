@@ -17,7 +17,7 @@ export default class SearchBar extends Component {
         return <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-800">
             <div class="container flex flex-wrap justify-around items-center mx-auto">
                 <a href="#" class="flex">
-                    <span class="self-center text-lg font-semibold dark:text-white">Ice Vods</span>
+                    <span class="self-center text-lg font-semibold dark:text-white">ICE VODS</span>
                 </a>
                 <div class="flex items-center">
                     <div class="relative mr-3 md:mr-0 md:block w-96">

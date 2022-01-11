@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 
 import moment from 'moment'
 import { Link } from "react-router-dom";
@@ -9,7 +9,7 @@ export default class SearchSummaryVideo extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            videoHyperlink: "/videos/" + props.video_id,
+            videoHyperlink: "/videos/" + props.video_id + "?q=" + props.originalQuery,
             thumbnail: props.thumbnail,
             title: props.title,
             uploader: props.uploader,
@@ -38,7 +38,7 @@ export default class SearchSummaryVideo extends Component {
 
         return (
             <div className="p-4">
-                <Link to={this.state.videoHyperlink} onClick={(e) => { this.updateQuery(e) }} component={SearchPage} >
+                <Link to={this.state.videoHyperlink} onClick={(e) => { this.updateQuery(e) }} >
                     <div className="rounded shadow-lg w-64 md:w-80 lg:w-96 bg-gray-900 pb-5 sm:h-auto">
                         <img className="w-64 md:w-80 lg:w-96 shadow rounded" src={this.state.thumbnail} />
                         <div className="px-4 pt-3 text-sm text-white"> {this.state.title} </div>

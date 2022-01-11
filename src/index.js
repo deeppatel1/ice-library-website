@@ -15,9 +15,9 @@ import {
 
 ReactDOM.render(<BrowserRouter>
     <Routes>
-      <Route path="/" element={<App />} />
       <Route path="search" element={<SearchPage query=""/>} />
       <Route path="videos/:videoId" element={<VideoDetailsPage query="" timestamp={new Date().toString()}></VideoDetailsPage>} />
+      <Route path="/" element={<SearchPage query=""/>} />
     </Routes>
   </BrowserRouter>,
   document.getElementById('root')

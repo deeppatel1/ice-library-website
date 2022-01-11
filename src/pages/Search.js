@@ -33,7 +33,7 @@ export default class SearchPage extends Component {
         return (
             <div>
                 <SearchBar query="" updateQueryFunc={this.updateQuery}></SearchBar>
-                <SearchResultsPage videos={this.state.videoResults}></SearchResultsPage>
+                <SearchResultsPage originalQuery={this.state.query} videos={this.state.videoResults}></SearchResultsPage>
             </div>
         )
     }
