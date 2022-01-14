@@ -4,17 +4,44 @@ export default class SearchBar extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            query: props.query
+            query: props.query,
+            isClips: false,
+            isAverageVideos: false,
+            isVods: false
         }
+        this.handleClips = this.handleClips.bind(this);
+        this.handleAverageVideo = this.handleAverageVideo.bind(this);
+        this.handleVods = this.handleVods.bind(this);
     }
 
     updateQuery(e) {
-        this.setState({query: e.target.value})
+        this.setState({ query: e.target.value })
         this.props.updateQueryFunc(e.target.value)
     }
 
+    handleClips(e) {
+        e.preventDefault();
+        this.setState(prevState => ({
+            isClips: !prevState.isClips
+        }));
+    }
+
+    handleAverageVideo(e) {
+        e.preventDefault();
+        this.setState(prevState => ({
+            isAverageVideos: !prevState.isAverageVideos
+        }));
+    }
+
+    handleVods(e) {
+        e.preventDefault();
+        this.setState(prevState => ({
+            isVods: !prevState.isVods
+        }));
+    }
+
     render() {
-        return <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-800">
+        return <div><nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-800">
             <div class="container flex flex-wrap justify-around items-center mx-auto">
                 <a href="#" class="flex">
                     <span class="self-center text-lg font-semibold dark:text-white">ICE VODS</span>
@@ -24,7 +51,7 @@ export default class SearchBar extends Component {
                         <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                             <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
                         </div>
-                        <input type="text" value={this.state.query} onChange={(e) => {this.updateQuery(e)}} class="block p-2 pl-10 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search..."/>
+                        <input type="text" value={this.state.query} onChange={(e) => { this.updateQuery(e) }} class="block p-2 pl-10 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search..." />
                     </div>
                     <button data-collapse-toggle="mobile-menu-3" type="button" class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="mobile-menu-3" aria-expanded="false">
                         <span class="sr-only">Open main menu</span>
@@ -45,7 +72,18 @@ export default class SearchBar extends Component {
                         </li>
                     </ul> */}
                 </div>
+
             </div>
         </nav>
+{/* 
+            <div class="h-7 dark:bg-gray-900 flex justify-center">
+                <div class="py-0">
+                    <button onClick={this.handleClips} class={this.state.isClips ? 'bg-blue-500 text-blue-700 font-semibold hover:text-white click:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded' : 'bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white click:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded'}>
+                        Button
+                    </button>
+                </div>
+            </div> */}
+        </div>
+
     }
 }
