@@ -1,3 +1,12 @@
+# FINAL BUILD:
+
+`npm run build`
+to create a special prod build
+
+`serve -s build`
+serve the build @ localhost:3000
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
