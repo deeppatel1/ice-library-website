@@ -18,7 +18,7 @@ export default class VideoDetailsPage extends Component {
             originalQuery: q,
             videoResults: []
         }
-        Axios.get("http://127.0.0.1:5000/search?q=" + q).then((response) => {
+        Axios.get("http://192.168.1.114:5000/search?q=" + q).then((response) => {
             this.setState({ videoResults: response.data.videos })
         })
     }
@@ -29,7 +29,7 @@ export default class VideoDetailsPage extends Component {
     }
 
     loadVideoResults(query) {
-        Axios.get("http://127.0.0.1:5000/search?q=" + query).then((response) => {
+        Axios.get("http://192.168.1.114:5000/search?q=" + query).then((response) => {
             this.setState({ videoResults: response.data.videos })
         })
     }

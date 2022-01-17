@@ -8,5 +8,8 @@ module.exports = {
     },
   },
   variants: {},
-  plugins: []
+  plugins: [],
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+  ],
 }

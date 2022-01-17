@@ -22,7 +22,7 @@ export default class SearchPage extends Component {
 
     loadVideoResults(query) {
 
-        Axios.get("http://127.0.0.1:5000/search?q=" + query).then((response) => {
+        Axios.get("http://192.168.1.114:5000/search?q=" + query).then((response) => {
             this.setState({ videoResults: [] })
             this.setState({ videoResults: response.data.videos })
         })

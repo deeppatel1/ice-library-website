@@ -8,7 +8,7 @@ export default function HighlightVideo() {
 
     const fetchData = async () => {
         const id = window.location.pathname.substring(8)
-        const res = await fetch("http://127.0.0.1:5000/" + id);
+        const res = await fetch("http://192.168.1.114:5000/" + id);
         const data = await res.json();
         setData(data);
         setVideoUrl("https://www.youtube.com/watch?v=" + id);
