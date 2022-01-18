@@ -39,7 +39,7 @@ export default class SearchSummaryVideo extends Component {
         return (
             <div className="p-4">
                 <Link to={this.state.videoHyperlink} onClick={(e) => { this.updateQuery(e) }} >
-                    <div className="rounded shadow-lg w-64 md:w-80 lg:w-96 bg-gray-900 pb-5 sm:h-auto">
+                    <div className="rounded shadow-lg w-64 md:w-80 lg:w-96 bg-gray-900 pb-5 sm:h-auto hover:bg-gray-800">
                         <img className="w-64 md:w-80 lg:w-96 shadow rounded" src={this.state.thumbnail} />
                         <div className="px-4 pt-3 text-sm text-white"> {this.state.title} </div>
                         <div className="px-4 py-2 text-xs text-gray-300 font-mono">

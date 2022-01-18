@@ -20,7 +20,7 @@
   },
   "scripts": {
     "start": "craco --openssl-legacy-provider start -a localhost -p 3000",
-    "build": "craco build",
+    "build": "craco --openssl-legacy-provider build",
     "test": "craco test",
     "eject": "react-scripts eject"
   },
