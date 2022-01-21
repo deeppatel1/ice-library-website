@@ -9,7 +9,8 @@ module.exports = {
         'indigo': colors.indigo
       },
       fontFamily: {
-        'sans': ['Roboto', 'Helvetica']
+        'sans': ['Roboto', 'Helvetica'],
+        'body': ['"Open Sans"']
       }
     },
   },

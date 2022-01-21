@@ -22,6 +22,7 @@ export default function SearchResultsPage(props) {
         date={d.date}
         view_count={d.view_count}
         video_id={d.videoId}
+        duration={d.duration}
     ></SearchSummaryVideo>);
 
     return (
