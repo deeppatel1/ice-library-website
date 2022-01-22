@@ -22,6 +22,7 @@
     "start": "craco --openssl-legacy-provider start -a localhost -p 3000",
     "build": "craco --openssl-legacy-provider build",
     "startReact": "react-scripts start",
+    "startReactBuild": "react-scripts build",
     "test": "craco test",
     "eject": "react-scripts eject"
   },

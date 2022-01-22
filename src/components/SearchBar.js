@@ -45,23 +45,23 @@ export default class SearchBar extends Component {
     }
 
     getClipsButtonCss() {
-        const clipsCss = "px-4 py-1 hover:bg-purple-600 text-white text-sm font-medium rounded-full focus:outline-none"
+        const clipsCss = "shadow px-4 py-1 hover:bg-purple-600 text-white text-sm font-medium rounded-full rounded-lg-border focus:outline-none"
         return this.state.isClips ? clipsCss + " bg-purple-500" : clipsCss + " bg-gray-500"
     }
 
     getAverageButtonCss() {
-        const clipsCss = "px-4 py-1 hover:bg-purple-600 text-white text-sm font-medium rounded-full focus:outline-none"
+        const clipsCss = "shadow px-4 py-1 hover:bg-purple-600 text-white text-sm font-medium rounded-full focus:outline-none"
         return this.state.isAverageVideos ? clipsCss + " bg-purple-500" : clipsCss + " bg-gray-500"
     }
 
     getVodsButtonCss() {
-        const clipsCss = "px-4 py-1 hover:bg-purple-600 text-white text-sm font-medium rounded-full focus:outline-none"
+        const clipsCss = "shadow px-4 py-1 hover:bg-purple-600 text-white text-sm font-medium rounded-full focus:outline-none"
         return this.state.isVods ? clipsCss + " bg-purple-500" : clipsCss + " bg-gray-500"
     }
 
 
     render() {
-        return <div><nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-900">
+        return <div><nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-900 shadow-lg">
             <div class="container flex flex-wrap justify-around items-center mx-auto">
                 <a href="search" class="flex">
                     <svg class="h-12 w-12" version="1.0" xmlns="http://www.w3.org/2000/svg"
@@ -137,7 +137,7 @@ export default class SearchBar extends Component {
                             </svg>
                         </div>
                         <input spellcheck="false" type="text" value={this.state.query} onChange={(e) => { this.updateQuery(e) }} class="block p-2 pl-10 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 shadow outline-none focus:outline-none focus:ring" placeholder="Search..." />
-                        <button type="submit" class="focus:outline-none absolute right-0 top-0 inset-y-0 mx-2" onClick={() => {this.handleCallingParentRandomVideo()}} >
+                        <button type="submit" class="focus:outline-none absolute right-0 top-0 inset-y-0 mx-2" onClick={() => { this.handleCallingParentRandomVideo() }} >
                             <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-500 w-6 h-6" viewBox="0 0 512 512">
                                 <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M400 304l48 48-48 48M400 112l48 48-48 48M64 352h85.19a80 80 0 0066.56-35.62L256 256" />
                                 <path d="M64 160h85.19a80 80 0 0166.56 35.62l80.5 120.76A80 80 0 00362.81 352H416M416 160h-53.19a80 80 0 00-66.56 35.62L288 208" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" />
@@ -150,7 +150,7 @@ export default class SearchBar extends Component {
                         <svg class="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                     </button>
                 </div>
-                <div class="justify-between items-center flex space-x-4 w-full md:flex md:w-auto md:order-1" id="mobile-menu-3">
+                <div class="justify-evenly items-center flex space-x-4 w-full md:flex md:w-auto md:order-1 sm:py-2" id="mobile-menu-3">
                     <button class={this.getClipsButtonCss()} onClick={(e) => { this.handleClips(e) }}>
                         Clips
                     </button>
@@ -167,15 +167,6 @@ export default class SearchBar extends Component {
 
             </div>
         </nav>
-            {/* 
-            <div class="h-1 dark:bg-gray-900 flex justify-center">
-                <div>
-
-                </div>
-            </div> */}
-
-
         </div>
-
     }
 }
