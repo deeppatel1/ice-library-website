@@ -10,6 +10,13 @@ export default class SearchPage extends Component {
         super(props)
         var urlParams = new URLSearchParams(window.location.search);
         var q = urlParams.get('q')
+        this.updateQuery = this.updateQuery.bind(this)
+        this.loadRandomVideoResults = this.loadRandomVideoResults.bind(this)
+
+        this.updateClips = this.updateClips.bind(this)
+        this.updateVids = this.updateVids.bind(this)
+        this.updateVods = this.updateVods.bind(this)
+
         this.state = {
             query: props.query || q,
             videoResults: [],
@@ -17,11 +24,6 @@ export default class SearchPage extends Component {
             isVids: true,
             isVods: true
         }
-        this.updateQuery = this.updateQuery.bind(this)
-        this.updateClipsBoolean = this.updateClipsBoolean.bind(this)
-        this.updateVidsBoolean = this.updateVidsBoolean.bind(this)
-        this.updateVodsBoolean = this.updateVodsBoolean.bind(this)
-        this.loadRandomVideoResults = this.loadRandomVideoResults.bind(this)
 
         this.loadVideoResults(q)
     }
@@ -48,26 +50,32 @@ export default class SearchPage extends Component {
 
     }
 
-    updateClipsBoolean(boolean) {
-        this.setState({isClips: boolean})
-        this.loadVideoResults(this.state.query)
+    updateClips(boolean) {
+        // this.setVideo(type, boolean)
+        this.setState({isClips: !boolean}, function () {
+            this.loadVideoResults(this.state.query)
+        })
+       
     }
-
-    updateVidsBoolean(boolean) {
-        this.setState({isVids: boolean})
-        this.loadVideoResults(this.state.query)
+    updateVids(boolean) {
+        // this.setVideo(type, boolean)
+        this.setState({isVids: !boolean}, function() {
+            this.loadVideoResults(this.state.query)
+        })
+        
     }
-
-    updateVodsBoolean(boolean) {
-        this.setState({isVods: boolean})
-        this.loadVideoResults(this.state.query)
+    updateVods(boolean) {
+        // this.setVideo(type, boolean)
+        this.setState({isVods: !boolean}, function() {
+            this.loadVideoResults(this.state.query)
+        })
     }
 
 
     render() {
         return (
             <div>
-                <SearchBar query={this.state.query} loadRandomVideoResults={this.loadRandomVideoResults} updateQueryFunc={this.updateQuery} updateClipsBoolean={this.updateClipsBoolean} updateVidsBoolean={this.updateVidsBoolean} updateVodsBoolean={this.updateVodsBoolean}></SearchBar>
+                <SearchBar query={this.state.query} loadRandomVideoResults={this.loadRandomVideoResults} updateQueryFunc={this.updateQuery} updateClips={this.updateClips} updateVids={this.updateVids} updateVods={this.updateVods}></SearchBar>
                 <SearchResultsPage originalQuery={this.state.query} videos={this.state.videoResults}></SearchResultsPage>
             </div>
         )

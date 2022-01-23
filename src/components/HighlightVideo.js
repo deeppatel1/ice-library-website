@@ -7,7 +7,8 @@ export default function HighlightVideo() {
     const [data, setData] = useState({});
     const [videoUrl, setVideoUrl] = useState("");
     const [tags, setTags] = useState([]);
-
+    const [videoSize, setVideoSize] = useState(0)
+  
     const fetchData = async () => {
         const id = window.location.pathname.substring(8)
         const res = await fetch("http://192.168.1.114:5000/" + id);
@@ -19,6 +20,12 @@ export default function HighlightVideo() {
 
     useEffect(() => {
         fetchData();
+        // const { height, width } = useWindowDimensions();
+        // if (height > 640){
+        //     setVideoSize('700px')
+        // } else {
+        //     setVideoSize('100%')
+        // }
     }, []);
 
     function getTags(tags) {
@@ -26,8 +33,8 @@ export default function HighlightVideo() {
         for (var i = 0; i < tags.length; i++) {
             const tag_link = "/search?q=" + tags[i]
             htmlTags.push(
-                <Link to={tag_link}>
-                    <span className="font-sans inline-block bg-gray-100 rounded-full px-3 py-1 text-sm text-gray-700 mr-2 mb-2"> {tags[i]} </span>
+                <Link to={tag_link} class="pr-2">
+                    <span className="font-sans inline-block bg-gray-100 rounded-full px-3 py-1 text-sm text-gray-700 pr-4 mb-2"> {tags[i]} </span>
                 </Link>
             )
         }
@@ -35,15 +42,16 @@ export default function HighlightVideo() {
     }
 
     return (
-        <div classNameName="HighlightVideo">
-            <div classNameName="Video">
+        <div className="HighlightVideo">
+            <div className="Video">
                 <ReactPlayer
                     className='react-player'
                     controls
                     playing
                     url={videoUrl}
                     width='100%'
-                    height='700px' />
+                    height='720px'
+                    pip='true' />
             </div>
 
             <div className="mx-4 my-4">

@@ -26,6 +26,6 @@ export default function SearchResultsPage(props) {
     ></SearchSummaryVideo>);
 
     return (
-        <div class="flex justify-center flex-wrap flex-row pt-6 pl-3">{videosList}</div>
+        <div class="flex justify-center flex-wrap flex-row pt-3 pl-3 md:pt-6 lg:pt-6">{videosList}</div>
     );
 }

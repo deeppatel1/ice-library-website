@@ -6,7 +6,7 @@ export default class SearchBar extends Component {
         this.state = {
             query: props.query,
             isClips: true,
-            isAverageVideos: true,
+            isVids: true,
             isVods: true
         }
     }
@@ -16,28 +16,26 @@ export default class SearchBar extends Component {
         this.props.updateQueryFunc(e.target.value)
     }
 
-    handleClips(e) {
-        e.preventDefault();
-        this.setState(prevState => ({
-            isClips: !prevState.isClips
-        }));
-        this.props.updateClipsBoolean(!this.state.isClips)
-    }
+    handleVideoStates(type) {
+        if (type == "isClips") {
+            this.setState(prevState => ({
+                isClips: !prevState.isClips
+            }));
+            this.props.updateClips(this.state.isClips)
 
-    handleAverageVideo(e) {
-        e.preventDefault();
-        this.setState(prevState => ({
-            isAverageVideos: !prevState.isAverageVideos
-        }));
-        this.props.updateVidsBoolean(!this.state.isAverageVideos)
-    }
+        } else if (type == "isVids") {
+            this.setState(prevState => ({
+                isVids: !prevState.isVids
+            }));
+            this.props.updateVids(this.state.isVids)
 
-    handleVods(e) {
-        e.preventDefault();
-        this.setState(prevState => ({
-            isVods: !prevState.isVods
-        }));
-        this.props.updateVodsBoolean(!this.state.isVods)
+        } else if (type == "isVods") {
+            this.setState(prevState => ({
+                isVods: !prevState.isVods
+            }));
+            this.props.updateVods(this.state.isVods)
+
+        }
     }
 
     handleCallingParentRandomVideo() {
@@ -45,25 +43,25 @@ export default class SearchBar extends Component {
     }
 
     getClipsButtonCss() {
-        const clipsCss = "shadow px-4 py-1 hover:bg-purple-600 text-white text-sm font-medium rounded-full rounded-lg-border focus:outline-none"
+        const clipsCss = "shadow px-4 py-1 text-white text-sm font-medium rounded-full rounded-lg-border focus:outline-none"
         return this.state.isClips ? clipsCss + " bg-purple-500" : clipsCss + " bg-gray-500"
     }
 
     getAverageButtonCss() {
-        const clipsCss = "shadow px-4 py-1 hover:bg-purple-600 text-white text-sm font-medium rounded-full focus:outline-none"
-        return this.state.isAverageVideos ? clipsCss + " bg-purple-500" : clipsCss + " bg-gray-500"
+        const clipsCss = "shadow px-4 py-1 text-white text-sm font-medium rounded-full focus:outline-none"
+        return this.state.isVids ? clipsCss + " bg-purple-500" : clipsCss + " bg-gray-500"
     }
 
     getVodsButtonCss() {
-        const clipsCss = "shadow px-4 py-1 hover:bg-purple-600 text-white text-sm font-medium rounded-full focus:outline-none"
+        const clipsCss = "shadow px-4 py-1 text-white text-sm font-medium rounded-full focus:outline-none"
         return this.state.isVods ? clipsCss + " bg-purple-500" : clipsCss + " bg-gray-500"
     }
 
 
     render() {
-        return <div><nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-900 shadow-lg">
+        return <div><nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-900 shadow-xl">
             <div class="container flex flex-wrap justify-around items-center mx-auto">
-                <a href="search" class="flex">
+                <a href="search" class="hidden lg:flex md:flex">
                     <svg class="h-12 w-12" version="1.0" xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 500.000000 500.000000"
                         preserveAspectRatio="xMidYMid meet">
@@ -128,8 +126,8 @@ export default class SearchBar extends Component {
 
                     <span class="self-center text-lg font-semibold dark:text-white">ICE VODS</span>
                 </a>
-                <div class="flex items-center">
-                    <div class="relative mr-3 md:mr-0 md:block w-96">
+                <div class="flex items-center pt-3 md:pt-0 lg:pt-0">
+                    <div class="relative md:pr-0 md:block w-96">
                         <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                             <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd">
@@ -144,26 +142,22 @@ export default class SearchBar extends Component {
                             </svg>
                         </button>
                     </div>
-                    <button data-collapse-toggle="mobile-menu-3" type="button" class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="mobile-menu-3" aria-expanded="false">
-                        <span class="sr-only">Open main menu</span>
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
-                        <svg class="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                    </button>
                 </div>
-                <div class="justify-evenly items-center flex space-x-4 w-full md:flex md:w-auto md:order-1 sm:py-2" id="mobile-menu-3">
-                    <button class={this.getClipsButtonCss()} onClick={(e) => { this.handleClips(e) }}>
-                        Clips
-                    </button>
+                <div class="pt-3 md:pt-0 lg:pt-0" id="mobile-menu">
+                    <div class="justify-evenly items-center flex space-x-8 md:space-x-4 lg:space-x-4">
+                        <button class={this.getClipsButtonCss()} onClick={(e) => { this.handleVideoStates("isClips") }}>
+                            Clips
+                        </button>
 
-                    <button class={this.getAverageButtonCss()} onClick={(e) => { this.handleAverageVideo(e) }}>
-                        Vids
-                    </button>
+                        <button class={this.getAverageButtonCss()} onClick={(e) => { this.handleVideoStates("isVids") }}>
+                            Vids
+                        </button>
 
-                    <button class={this.getVodsButtonCss()} onClick={(e) => { this.handleVods(e) }}>
-                        Vods
-                    </button>
+                        <button class={this.getVodsButtonCss()} onClick={(e) => { this.handleVideoStates("isVods") }}>
+                            Vods
+                        </button>
+                    </div>
                 </div>
-
 
             </div>
         </nav>
