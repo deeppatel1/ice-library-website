@@ -48,7 +48,7 @@ export default class VideoDetailsPage extends Component {
                 <div>
                     <SearchBar query="" updateQueryFunc={this.updateQuery}></SearchBar>
                     <HighlightVideo updateQueryFunc={this.updateQuery}></HighlightVideo>
-                    <SearchResultsPage originalQuery={this.state.originalQuery} videos={this.state.videoResults}></SearchResultsPage>
+                    {/* <SearchResultsPage originalQuery={this.state.originalQuery} videos={this.state.videoResults}></SearchResultsPage> */}
                 </div>
             )
         } else {

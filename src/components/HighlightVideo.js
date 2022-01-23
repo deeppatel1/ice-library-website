@@ -1,6 +1,7 @@
 import ReactPlayer from 'react-player/youtube'
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import SearchResultsPage from './SearchResultsPage';
 
 export default function HighlightVideo() {
 
@@ -8,24 +9,25 @@ export default function HighlightVideo() {
     const [videoUrl, setVideoUrl] = useState("");
     const [tags, setTags] = useState([]);
     const [videoSize, setVideoSize] = useState(0)
-  
+    const [relatedVideos, setRelatedVideos] = useState([])
+
     const fetchData = async () => {
         const id = window.location.pathname.substring(8)
         const res = await fetch("http://192.168.1.114:5000/" + id);
         const data = await res.json();
         setData(data);
-        setVideoUrl("https://www.youtube.com/watch?v=" + id);
         getTags(data.tags);
+
+        const relatedResponse = await fetch("http://192.168.1.114:5000/related?title=" + data.title);
+        const relatedVideosData = await relatedResponse.json();
+
+        setRelatedVideos(relatedVideosData.videos);
+
+        setVideoUrl("https://www.youtube.com/watch?v=" + id);
     };
 
     useEffect(() => {
         fetchData();
-        // const { height, width } = useWindowDimensions();
-        // if (height > 640){
-        //     setVideoSize('700px')
-        // } else {
-        //     setVideoSize('100%')
-        // }
     }, []);
 
     function getTags(tags) {
@@ -42,36 +44,40 @@ export default function HighlightVideo() {
     }
 
     return (
-        <div className="HighlightVideo">
-            <div className="Video">
-                <ReactPlayer
-                    className='react-player'
-                    controls
-                    playing
-                    url={videoUrl}
-                    width='100%'
-                    height='720px'
-                    pip='true' />
-            </div>
+        <div>
+            <div className="HighlightVideo">
+                <div className="Video">
+                    <ReactPlayer
+                        className='react-player'
+                        controls
+                        playing
+                        url={videoUrl}
+                        width='100%'
+                        height='720px'
+                        pip='true' />
+                </div>
 
-            <div className="mx-4 my-4">
+                <div className="mx-4 my-4">
 
-                <div class="font-mono font-bold text-xl px-10 py-4 text-gray-200">{data.title}</div>
+                    <div class="font-mono font-bold text-xl px-10 py-4 text-gray-200">{data.title}</div>
 
-                <div class="py-3">
-                    <div class="flex">
-                        {/* <div class="flex-none">
+                    <div class="py-3">
+                        <div class="flex">
+                            {/* <div class="flex-none">
                             <img class="inline content-center object-cover w-12 h-12 rounded-full" src="https://images.pexels.com/photos/2589653/pexels-photo-2589653.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Profile image" />
                             <div className="font-sans bg-gray-200 rounded-full px-4 py-1 text-xs text-gray-900 dark:text-white">test</div>
                         </div> */}
-                        <div class="px-10 text-gray-500 font-serif whitespace-pre h-40 overflow-y-scroll"> {data.description}</div>
+                            <div class="px-10 text-gray-500 font-serif whitespace-pre h-40 overflow-y-scroll"> {data.description}</div>
+                        </div>
+                    </div>
+
+                    <div className="px-8 pt-4">
+                        {tags}
                     </div>
                 </div>
-
-                <div className="px-8 pt-4">
-                    {tags}
-                </div>
             </div>
+            <p class="font-bold text-xl px-14 pt-4 text-gray-200">Related Videos</p>
+            <SearchResultsPage originalQuery="" videos={relatedVideos}></SearchResultsPage>
         </div>
     )
 }

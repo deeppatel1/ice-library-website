@@ -25,7 +25,11 @@ export default class SearchPage extends Component {
             isVods: true
         }
 
-        this.loadVideoResults(q)
+        if ((q === null) || (q === undefined)){
+            this.loadRandomVideoResults()
+        } else {
+            this.loadVideoResults(q)
+        }
     }
 
     updateQuery(query) {

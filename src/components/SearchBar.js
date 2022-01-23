@@ -17,19 +17,19 @@ export default class SearchBar extends Component {
     }
 
     handleVideoStates(type) {
-        if (type == "isClips") {
+        if (type === "isClips") {
             this.setState(prevState => ({
                 isClips: !prevState.isClips
             }));
             this.props.updateClips(this.state.isClips)
 
-        } else if (type == "isVids") {
+        } else if (type === "isVids") {
             this.setState(prevState => ({
                 isVids: !prevState.isVids
             }));
             this.props.updateVids(this.state.isVids)
 
-        } else if (type == "isVods") {
+        } else if (type === "isVods") {
             this.setState(prevState => ({
                 isVods: !prevState.isVods
             }));

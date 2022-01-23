@@ -19,9 +19,9 @@
     "web-vitals": "^2.1.2"
   },
   "scripts": {
-    "start": "craco --openssl-legacy-provider start -a localhost -p 3000",
+    "start": "craco --openssl-legacy-provider start -p 3001 ",
     "build": "craco --openssl-legacy-provider build",
-    "startReact": "react-scripts start",
+    "startReact": "PORT=3001 react-scripts start -p 3001",
     "startReactBuild": "react-scripts build",
     "test": "craco test",
     "eject": "react-scripts eject"
