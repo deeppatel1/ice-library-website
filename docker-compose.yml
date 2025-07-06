@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  # Production build
+  ice-website:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    networks:
+      - ice-network
+
+networks:
+  ice-network:
+    driver: bridge 

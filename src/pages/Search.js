@@ -39,7 +39,7 @@ export default class SearchPage extends Component {
 
     loadVideoResults(query) {
         const videoType = [this.state.isClips, this.state.isVids, this.state.isVods].toString()
-        Axios.get("http://192.168.1.114:5000/search?q=" + query + "&returnType=" + videoType).then((response) => {
+        Axios.get("http://192.168.1.142:5001/search?q=" + query + "&returnType=" + videoType).then((response) => {
             this.setState({ videoResults: [] })
             this.setState({ videoResults: response.data.videos })
         })
@@ -47,7 +47,7 @@ export default class SearchPage extends Component {
 
     loadRandomVideoResults() {
         const videoType = [this.state.isClips, this.state.isVids, this.state.isVods].toString()
-        Axios.get("http://192.168.1.114:5000/search?randomQuery=true&returnType" + videoType).then((response) => {
+        Axios.get("http://192.168.1.142:5001/search?randomQuery=true&returnType" + videoType).then((response) => {
             this.setState({ videoResults: [] })
             this.setState({ videoResults: response.data.videos })
         })
